@@ -1,18 +1,19 @@
 import React, { useState, useEffect } from "react";
-// import APIKit from "../../api/spotify";
+import APIKit from "../../api/spotify";
 import { IconContext } from "react-icons";
 import { AiFillPlayCircle } from "react-icons/ai";
 import "./library.css";
 import { useNavigate } from "react-router-dom";
 
 export default function Library() {
-  // const [playlists, setPlaylists] = useState(null);
+  const [playlists, setPlaylists] = useState(null);
 
-  // useEffect(() => {
-  //   APIKit.get("me/playlists").then(function (response) {
-  //     setPlaylists(response.data.items);
-  //   });
-  // }, []);
+  useEffect(() => {
+    APIKit.get("me/playlists").then(function (response) {
+      setPlaylists(response.data.items);
+      console.log(response.data.items)
+    });
+  }, []);
 
   const navigate = useNavigate();
 
@@ -22,7 +23,7 @@ export default function Library() {
 
   return (
     <div className="screen-container">
-      {/* <div className="library-body">
+      <div className="library-body">
         {playlists?.map((playlist) => (
           <div
             className="playlist-card"
@@ -43,7 +44,7 @@ export default function Library() {
             </div>
           </div>
         ))}
-      </div> */}
+      </div>
     </div>
   );
 }
